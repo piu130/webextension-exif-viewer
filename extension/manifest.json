@@ -1,0 +1,37 @@
+{
+
+  "manifest_version": 2,
+  "name": "EXIF Viewer",
+  "version": "0.1",
+  
+  "description": "Shows a modal, when you upload a picture, with the EXIF data you share.",
+  "homepage_url": "https://github.com/piu130/exif-webextension",
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [ "file:///*", "<all_urls>" ],
+      "js": [
+        "/dist/content.js"
+      ]
+    }
+  ],
+
+  "options_ui": {
+    "page": "options.html"
+  },
+  
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  
+  "applications": {
+    "gecko": {
+      "id": "exif-viewer@piu130.com"
+    }
+  }
+}
