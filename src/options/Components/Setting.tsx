@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 export interface SettingProps {
+  id: number
   setting: Store.Setting
   onChange: () => void
 }

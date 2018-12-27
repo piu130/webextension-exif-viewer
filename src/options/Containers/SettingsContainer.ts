@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { settingsActions } from '../state/ducks/settings'
-import { Settings } from '../Components'
+import { settingsActions } from '../state/ducks/settings/index'
+import { Settings, SettingsProps } from '../Components/Settings'
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state: Store.All, ownProps: SettingsProps) => ({
   groups: Object.keys(state.syncStorage.settingGroups)
 })
 

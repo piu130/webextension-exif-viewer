@@ -3,14 +3,14 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { tags } from 'exif-tags'
 import { configureStore } from './state/configureStore'
-import { SettingsContainer } from './Containers'
+import { SettingsContainer } from './Containers/index'
 
 const createInitialState = () => {
   const filteredTags = Object
     .values(tags)
     .filter(({ group }) => group !== 'pointer')
 
-  const settings = filteredTags
+  const settings: Store.Settings = filteredTags
     .reduce((acc, { id, name }) => {
       acc[id] = { id, name, value: true }
       return acc
@@ -27,7 +27,7 @@ const createInitialState = () => {
 
 const { persistor, store } = configureStore(createInitialState())
 
-export class App extends Component {
+export class App extends Component<{}> {
   render () {
     return (
       <Provider store={store}>

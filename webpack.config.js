@@ -8,7 +8,7 @@ module.exports = {
     // and included in the extension source.
     // For example, you could add a background script like:
     content: 'content/index.js',
-    options: 'options/index.js',
+    options: 'options/index.tsx',
     // popup: 'popup.js',
   },
   output: {
@@ -20,16 +20,10 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
-        test: /\.jsx?$/,
-        use: [
-            // This transpiles all code (except for third party modules) using Babel.
-          {
-            // Babel options are in .babelrc
-            loader: 'babel-loader',
-          },
-        ]
-      }, 
+        test:  /\.(t|j)sx?$/,
+        use: ['ts-loader'],
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/,
         use: ['css-loader']
@@ -37,11 +31,6 @@ module.exports = {
       {
         test: /\.html$/,
         use: ['html-loader'],
-      },
-      {
-        test: /\.tsx?$/,
-        use: ['ts-loader'],
-        exclude: /node_modules/
       }
     ]
   },

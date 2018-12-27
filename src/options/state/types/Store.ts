@@ -20,7 +20,9 @@ namespace Store {
   }
 
   export type All = {
-    settings: Settings
-    settingGroups: SettingGroups
+    syncStorage: {
+      settings: Settings
+      settingGroups: SettingGroups
+    }
   }
 }

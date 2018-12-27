@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { SettingContainer } from '../Containers'
+import { SettingContainer } from '../Containers/index'
 
 export interface SettingGroupProps {
+  id: string
   settingGroup: Store.SettingGroup
   selectAll: (id: string) => void
-  SettingComponent: typeof Component
+  SettingComponent?: typeof Component
 }
 
 export class SettingGroup extends Component<SettingGroupProps> {

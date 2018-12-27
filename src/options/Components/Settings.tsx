@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { SettingGroupContainer } from '../Containers'
+import { SettingGroupContainer } from '../Containers/index'
 
 export interface SettingsProps {
-  groups: Store.SettingGroup[]
-  SettingGroupComponent: Component
+  groups: string[]
+  SettingGroupComponent?: typeof Component
 }
 
 export class Settings extends Component<SettingsProps> {
