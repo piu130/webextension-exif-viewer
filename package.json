@@ -7,14 +7,29 @@
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@types/react": "^16.7.18",
+    "@types/react-redux": "^6.0.11",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^2.0.1",
     "html-loader": "^0.5.5",
+    "ts-loader": "^5.3.2",
+    "typescript": "^3.2.2",
     "webpack": "^4.28.1",
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "exif": "../exif"
+    "exif": "../exif-from-image",
+    "exif-tags": "^4.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
+    "redux-persist-webextension-storage": "^1.0.2",
+    "redux-thunk": "^2.3.0"
   }
 }

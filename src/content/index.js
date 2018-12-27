@@ -1,6 +1,6 @@
 import { getAllTags } from 'exif'
-import modalCss from './content/modal.css'
-import modalHtml from './content/modal.html'
+import modalCss from './modal.css'
+import modalHtml from './modal.html'
 
 const fileToDataView = async (file) => new Promise((resolve, reject) => {
   const reader = new FileReader()
@@ -17,12 +17,12 @@ const createNewOnChange = (oldOnChange) => async (e) => {
       .then(dataView => getAllTags(dataView))
       .then(tags => ({ file, tags }))
   )
-  const settingTags = Object.keys(await browser.storage.sync.get())
+  const settingTags = Object.keys(await browser.storage.sync.get()).map(Number)
   
   const analizedFiles = (await Promise.all(promises))
     // Filter files not containing any tag from settings
-    .filter(({ tags }) => Object.values(tags).map(tag => tag.name).some(name => settingTags.includes(name)))
-
+    .filter(({ tags }) => Object.values(tags).some(({ id }) => settingTags.includes(id)))
+    
   if (analizedFiles.length > 0) {
     const page = analizedFiles.map(({file, tags}) => `
       <b>${file.name}</b>
@@ -51,8 +51,6 @@ const inputs = Array.from(document.getElementsByTagName("input"))
 inputs.forEach(
   input => input.tag.onchange = createNewOnChange(input.tag.onchange)
 )
-
-console.log('loaded..')
 
 const createModal = () => {
   const style = document.createElement('style')

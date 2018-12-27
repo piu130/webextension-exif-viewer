@@ -2,12 +2,13 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
+  mode: 'development',
   entry: {
     // Each entry in here would declare a file that needs to be transpiled
     // and included in the extension source.
     // For example, you could add a background script like:
-    content: 'content.js',
-    options: 'options.js',
+    content: 'content/index.js',
+    options: 'options/index.js',
     // popup: 'popup.js',
   },
   output: {
@@ -20,7 +21,7 @@ module.exports = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.js$/,
+        test: /\.jsx?$/,
         use: [
             // This transpiles all code (except for third party modules) using Babel.
           {
@@ -36,12 +37,17 @@ module.exports = {
       {
         test: /\.html$/,
         use: ['html-loader'],
+      },
+      {
+        test: /\.tsx?$/,
+        use: ['ts-loader'],
+        exclude: /node_modules/
       }
     ]
   },
   resolve: {
     // This allows you to import modules just like you would in a NodeJS app.
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [
       path.join(__dirname, 'src'),
       'node_modules',
@@ -51,7 +57,7 @@ module.exports = {
     // Since some NodeJS modules expect to be running in Node, it is helpful
     // to set this environment var to avoid reference errors.
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
   // This will expose source map files so that errors will point to your
